@@ -1,22 +1,25 @@
 #!/usr/bin/python3
 """
-File: module.py
-Project: ScrapPDFOrders
+File: detail.py
+Project: ScrapePDFOrders
 Author: John Major
-Date: 2025-11-17
-Description:  Extract orders from pdf
+Date: 2025-11-24
+Description:  Detail extract data
 """
-
-import shutil
 import fitz # PyMuPDF
 
-class pdfTools():
+class detail():
     def __init__(self):
         self.temp=1
 
 
-    def copy_pdf(self,input_path, output_path):
-        shutil.copy(input_path, output_path)
+    def getDetailLine(self,page,  x, y):
+        idv = self.getText(page, x, y, 1)
+        desc = self.getText(page, x+1.5, y, 2.9)
+        loc = self.getText(page, x+4.5, y, 1)
+        qty = self.getText(page, x+6.5, y, 1)
+
+        return idv,desc,loc,qty
 
 
     def getText(self,page, startXin, startYin, widthin):
